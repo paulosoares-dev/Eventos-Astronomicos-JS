@@ -43,3 +43,40 @@ export const verificaChuvaVisivelProximos2Meses = (chuva, data) => {
 
     return ( dataAtual < dataInicio && dataInicio < dataFim );
 }
+
+/**
+ * @description Inverte o mes e o dia de uma data que não possui ano definido
+ *
+ * @param {String} data
+ */
+export const inverteMesAno = (data) => {
+    const dataInvertida = data.split('/');
+
+    return dataInvertida[1] + '/' + dataInvertida[0];
+}
+
+/**
+ * @description Retorna um texto com a intensidade da chuva
+ *
+ * @param {String} intensidade
+ */
+export const retornaIntensidade = (intensidade) => {
+    let novaIntensidade = '1 (Fraca)';
+
+    if ( intensidade.indexOf('Forte') >= 0 ) {
+        novaIntensidade = '3 (Forte)';
+    } else if ( intensidade.indexOf('Média') >= 0 ) {
+        novaIntensidade = '2 (Média)';
+    } else if (  intensidade.indexOf('Irregular') >= 0 ) {
+        novaIntensidade = '(Irregular)';
+    }
+
+    return novaIntensidade;
+}
+
+/**
+ * @description Retorna o hemisfério baseado no valor da declinação
+ *
+ * @param {Number} declinacao
+ */
+export const retornaHemisferio = (declinacao) => declinacao >= 0 ? 'Norte' : 'Sul';

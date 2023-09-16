@@ -1,4 +1,5 @@
 import colecaoChuvasDeMeteoros from "./data/chuva-de-meteoros.js";
+import imprimeListaDeChuvas from "./funcoes/funcoesInterface.js";
 import {
     verificaChuvaVisivelPorData,
     verificaChuvaVisivelProximos2Meses
@@ -17,13 +18,17 @@ const chuvasVisiveisProximos2Meses = colecaoChuvasDeMeteoros.filter(
 console.log('Chuva de meteoros');
 
 if ( chuvasVisiveisHoje.length > 0 ) {
-    console.log('CHUVAS QUE PODEM SER VISTAS HOJE');
+    let msg = "\nEncontramos ";
+    msg += chuvasVisiveisHoje.length == 1
+        ? '1 chuva de meteoros que pode ser vista hoje'
+        : chuvasVisiveisHoje.length + ' chuvas de meteoros que podem ser vistas hoje';
 
-    console.log(chuvasVisiveisHoje);
+    console.log(msg);
 
+    imprimeListaDeChuvas(chuvasVisiveisHoje);
 } else {
-    console.log('\nNão há chuvas passando hoje');
+    console.log('\nNenhuma chuva de meteoros passando no momento');
 }
 
-console.log('CHUVAS QUE PODEM SER VISTAS NOS PRÓXIMOS 2 MESES');
-console.log(chuvasVisiveisProximos2Meses);
+console.log('\n\nNão perca as próximas chuvas de meteoros:');
+imprimeListaDeChuvas(chuvasVisiveisProximos2Meses);
